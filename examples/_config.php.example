@@ -1,0 +1,11 @@
+<?php
+
+require_once("../vendor/autoload.php");
+
+$config = [
+    "tenant_service_api_url" => 'http://localhost:8000/api/',
+    "tenant_service_api_token" => '',
+    "verify_ssl" => false,
+    "tenant_token" => '',
+    "no" => ''
+];
