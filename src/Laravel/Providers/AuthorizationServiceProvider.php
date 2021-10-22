@@ -2,6 +2,8 @@
 
 namespace JmaDsm\AuthorizationService\Laravel\Providers;
 
+use JmaDsm\AuthorizationService\Client as AuthorizationServiceClient;
+
 class AuthorizationServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
