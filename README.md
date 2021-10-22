@@ -10,7 +10,7 @@ composer require jmadsm/authorization-service-client
 php artisan vendor:publish --tag=authorization-config --ansi
 ```
 
-### Get tenant token with Laravel
+### Get Scope with Laravel
 ```php
 use Illuminate\Support\Facades\App;
 use JmaDsm\AuthorizationService\Client as AuthorizationServiceClient;

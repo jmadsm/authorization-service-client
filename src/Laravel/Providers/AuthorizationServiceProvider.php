@@ -5,7 +5,7 @@ namespace JmaDsm\AuthorizationService\Laravel\Providers;
 class AuthorizationServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
-     * Bind TenantServiceClient to container
+     * Bind AuthorizationServiceClient to container
      *
      * @return void
      */
@@ -13,7 +13,7 @@ class AuthorizationServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/authorization.php' => config_path('authorization.php')
-        ], 'tenant-config');
+        ], 'authorization-config');
 
         $this->app->singleton(AuthorizationServiceClient::class, function() {
             return new AuthorizationServiceClient(config('authorization.endpoint'), config('authorization.token'));

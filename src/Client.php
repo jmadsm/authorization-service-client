@@ -7,8 +7,15 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class Client
 {
+    /**
+     * @var GuzzleClient
+     */
     protected GuzzleClient $guzzleClient;
 
+    /**
+     * @param string $endpoint
+     * @param string $apiToken
+     */
     public function __construct(string $endpoint, string $apiToken)
     {
         $this->guzzleClient = new GuzzleClient([
