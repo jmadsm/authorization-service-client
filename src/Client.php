@@ -34,7 +34,7 @@ class Client
      */
     public function getScopes(string $tenantToken, string $contactPersonNo): array
     {
-        $response = $this->guzzleClient->get("contact/${$contactPersonNo}?" . http_build_query(['tenant_token' => $tenantToken]));
+        $response = $this->guzzleClient->get("api/v1/contact/{$contactPersonNo}?" . http_build_query(['tenant_token' => $tenantToken]));
 
         return json_decode($response->getBody(), true);
     }
