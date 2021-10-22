@@ -7,5 +7,5 @@ $config = [
     "authorization_service_api_token" => '',
     "verify_ssl" => false,
     "tenant_token" => '',
-    "no" => ''
+    "contact_person_no" => ''
 ];
