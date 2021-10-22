@@ -15,7 +15,7 @@ php artisan vendor:publish --tag=authorization-config --ansi
 use Illuminate\Support\Facades\App;
 use JmaDsm\AuthorizationService\Client as AuthorizationServiceClient;
 
-$authorization = (App::make(AuthorizationServiceClient::class))->getScopes($tenant_token, $no);
+$authorization = (App::make(AuthorizationServiceClient::class))->getScopes($tenantToken, $contactPersonNo);
 ```
 
 ## Example
