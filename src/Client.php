@@ -3,7 +3,7 @@
 namespace JmaDsm\AuthorizationService;
 
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ClientException;
 
 class Client
 {
@@ -27,23 +27,22 @@ class Client
     }
 
     /**
-     * @param  string          $tenantId
-     * @param  string          $contactPersonNo
+     * @param  string $tenantId
+     * @param  string $contactPersonNo
      * @return array
-     * @throws GuzzleException
      */
     public function getScopes(string $tenantId, string $contactPersonNo): array
     {
         try {
-            $response = $this->guzzleClient->get("api/v1/contact/{$contactPersonNo}?" . http_build_query(['tenant_id' => $tenantId]));
-        } catch (RequestException $e) {
-            if (!$e->hasResponse() || $e->getResponse()->getStatusCode() !== '404') {
+            $scopes = json_decode($this->guzzleClient->get("api/v1/contact/{$contactPersonNo}?" . http_build_query(['tenant_id' => $tenantId]))->getBody(), true);
+        } catch (ClientException $e) {
+            if (!$e->hasResponse() || $e->getResponse()->getStatusCode() !== 404) {
                 throw $e;
             }
 
-            $response = $e->getResponse();
+            $scopes = [];
         }
 
-        return json_decode($response->getBody(), true);
+        return $scopes;
     }
 }
