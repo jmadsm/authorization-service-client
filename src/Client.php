@@ -19,22 +19,30 @@ class Client
     public function __construct(string $endpoint, string $apiToken)
     {
         $this->guzzleClient = new GuzzleClient([
-           'base_uri' => $endpoint,
-           'headers' => [
-               'Authorization' => 'Bearer '. $apiToken
-           ]
+            'base_uri' => $endpoint,
+            'headers'  => [
+                'Authorization' => 'Bearer ' . $apiToken
+            ]
         ]);
     }
 
     /**
-     * @param string $tenantToken
-     * @param string $contactPersonNo
+     * @param  string          $tenantId
+     * @param  string          $contactPersonNo
      * @return array
      * @throws GuzzleException
      */
-    public function getScopes(string $tenantToken, string $contactPersonNo): array
+    public function getScopes(string $tenantId, string $contactPersonNo): array
     {
-        $response = $this->guzzleClient->get("api/v1/contact/{$contactPersonNo}?" . http_build_query(['tenant_token' => $tenantToken]));
+        try {
+            $response = $this->guzzleClient->get("api/v1/contact/{$contactPersonNo}?" . http_build_query(['tenant_id' => $tenantId]));
+        } catch (RequestException $e) {
+            if (!$e->hasResponse() || $e->getResponse()->getStatusCode() !== '404') {
+                throw $e;
+            }
+
+            $response = $e->getResponse();
+        }
 
         return json_decode($response->getBody(), true);
     }

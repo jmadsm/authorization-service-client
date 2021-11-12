@@ -6,6 +6,6 @@ $config = [
     "authorization_service_api_url" => 'http://localhost:8000/api/',
     "authorization_service_api_token" => '',
     "verify_ssl" => false,
-    "tenant_token" => '',
+    "tenant_id" => '',
     "contact_person_no" => ''
 ];
