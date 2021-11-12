@@ -34,7 +34,7 @@ class Client
     public function getScopes(string $tenantId, string $contactPersonNo): array
     {
         try {
-            $scopes = json_decode($this->guzzleClient->get("api/v1/contact/{$contactPersonNo}?" . http_build_query(['tenant_id' => $tenantId]))->getBody(), true);
+            $scopes = json_decode($this->guzzleClient->get("api/contact/{$contactPersonNo}?" . http_build_query(['tenant_id' => $tenantId]))->getBody(), true);
         } catch (ClientException $e) {
             if (!$e->hasResponse() || $e->getResponse()->getStatusCode() !== 404) {
                 throw $e;
