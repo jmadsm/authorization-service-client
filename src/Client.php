@@ -45,4 +45,19 @@ class Client
 
         return $scopes;
     }
+
+    /**
+     * Get array of registered contacts based on contact_no's from $contactNos
+     *
+     * @param  string|int $tenantId
+     * @param  array      $contactNos
+     * @return array
+     */
+    public function getRegisteredContacts($tenantId, array $contactNos): array
+    {
+        $request  = $this->guzzleClient->post('api/contact/registered', ['json' => ['tenant_id' => $tenantId, 'contacts' => $contactNos]]);
+        $response = json_decode($request->getBody(), true);
+
+        return $response;
+    }
 }
